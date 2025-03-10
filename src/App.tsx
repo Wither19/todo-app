@@ -3,7 +3,7 @@ import "./App.scss";
 
 import { allToLowerCase, stateIndexRemove, markTodo } from "./functions.ts";
 
-import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { FaTrash } from "react-icons/fa";
 
 // import * as bootstrap from "bootstrap";
 
@@ -69,15 +69,12 @@ function App() {
 				<br />
 				<input
 					type="text"
-					className="input-lg"
+					className="input-lg my-5"
 					id="todo-draft"
 					value={draftText}
 					onChange={updateDraft}
 					onKeyDown={submitTodo}
 				/>
-				<br />
-				<br />
-				<br />
 				<div className="row">
 					<div className="col-4">
 						<ul className="list-group">
@@ -103,7 +100,7 @@ function App() {
 											<span
 												className="badge bg-danger rounded-pill cursor"
 												onClick={() => removeTodo(index)}>
-												<IoMdRemoveCircleOutline size="24" />
+												<FaTrash size="18" />
 											</span>
 										</li>
 									</>
