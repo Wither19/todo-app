@@ -59,12 +59,12 @@ function App() {
 		var end: boolean = false;
 		if (todoIndex + 1 == todos.length) {
 			end = true;
-			stateIndexRemove(todos, todoIndex, end);
-			stateIndexRemove(loggedTodos, todoIndex, end);
+			setTodos((prev) => stateIndexRemove(prev, todoIndex, end));
+			setLog((prev) => stateIndexRemove(prev, todoIndex, end));
 		} else {
 			end = false;
-			stateIndexRemove(todos, todoIndex, end);
-			stateIndexRemove(loggedTodos, todoIndex, end);
+			setTodos((prev) => stateIndexRemove(prev, todoIndex, end));
+			setLog((prev) => stateIndexRemove(prev, todoIndex, end));
 		}
 	}
 
