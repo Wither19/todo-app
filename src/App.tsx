@@ -36,6 +36,7 @@ function App() {
 		setDraftText(draft.value);
 	}
 
+	// Submits what is in the draft to a new entry in the todo array, and the todo log. Updates the UI, of course.
 	function submitTodo(event: any): void {
 		if (event.type == "keydown" && event.which == 13) {
 			if (allToLowerCase(loggedTodos).includes(draftText.toLowerCase())) {
@@ -52,6 +53,7 @@ function App() {
 		}
 	}
 
+	// Removes the list item through each individual delete button.
 	function removeTodo(todoIndex: number): void {
 		var end: boolean = false;
 		if (todoIndex + 1 == todos.length) {

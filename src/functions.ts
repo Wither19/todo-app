@@ -19,6 +19,7 @@ export function stateIndexRemove(
 	return arr;
 }
 
+// Changes the checkbox value in the todo array.
 export function markTodo(
 	source: Array<any>,
 	check: boolean,
@@ -40,6 +41,7 @@ export function markTodo(
 	return arr;
 }
 
+// Renames an existing item in the todo array.
 export function renameTodo(
 	source: Array<any>,
 	index: number,
@@ -51,6 +53,7 @@ export function renameTodo(
 	return arr;
 }
 
+// Updates with the renamed todo in the log.
 export function renameLog(
 	source: Array<string>,
 	index: number,
