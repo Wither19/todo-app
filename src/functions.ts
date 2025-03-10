@@ -45,15 +45,12 @@ export function renameTodo(
 	index: number,
 	taskName: string
 ): Array<any> {
-	var renameInput: any = prompt(
-		`What would you like to rename task "${taskName}"?`
-	);
 	var arr: Array<any> = source.map(
 		(item: { done: boolean; name: string }, ind: number) => {
 			if (ind == index) {
 				return {
 					done: item.done,
-					name: renameInput,
+					name: taskName,
 				};
 			} else {
 				return item;
