@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.scss";
 
-import * as bootstrap from "bootstrap";
+// import * as bootstrap from "bootstrap";
 
 function App() {
 	const [draftText, setDraftText] = useState("");
@@ -18,7 +18,14 @@ function App() {
 		setDraftText(draft.value);
 	};
 
-	const submitDraft = () => {};
+	const submitDraft = (event: any) => {
+		if (event.which == 13) {
+			setTodos((prev) => [...prev, { name: draftText, done: false }]);
+			const draft = document.getElementById("todo-draft") as HTMLInputElement;
+			draft.value = "";
+			updateDraft();
+		}
+	};
 
 	return (
 		<>
@@ -40,12 +47,26 @@ function App() {
 							id="todo-draft"
 							value={draftText}
 							onChange={updateDraft}
-							onKeyUp={submitDraft}
+							onKeyDown={submitDraft}
 						/>
+						<button type="button" className="btn btn-secondary mx-2">
+							Submit
+						</button>
 					</div>
 				</div>
+				<br />
+				<br />
+				<br />
 				<div className="row">
-					<div className="col-8"></div>
+					<div className="col-8">
+						<div className="list-group">
+							{todos.map((todo) => (
+								<li key={todo.name} className="list-group-item">
+									{todo.name}
+								</li>
+							))}
+						</div>
+					</div>
 				</div>
 			</div>
 		</>
