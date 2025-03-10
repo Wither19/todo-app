@@ -60,7 +60,7 @@ export function renameTodo(source: Array<any>, index: number): Array<any> {
 export function renameLog(source: Array<any>, index: number): Array<any> {
 	var arr: Array<any> = source.map((item: string, ind: number) => {
 		if (ind == index) {
-			return ;
+			return;
 		} else {
 			return item;
 		}
