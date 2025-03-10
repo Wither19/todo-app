@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.scss";
 
-import { allToLowerCase, stateIndexRemove } from "./functions.ts";
+import { allToLowerCase, stateIndexRemove, markTodo } from "./functions.ts";
 
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 
@@ -13,7 +13,7 @@ function App() {
 	// Object structure for a todo item
 	const [todos, setTodos] = useState([
 		{
-			done: true,
+			done: false,
 			name: "Sample task",
 		},
 	]);
@@ -87,6 +87,16 @@ function App() {
 										<li
 											key={todo.name}
 											className="list-group-item d-flex justify-content-between align-items-center">
+											<input
+												className="form-check-input my-1"
+												type="checkbox"
+												checked={todo.done}
+												onChange={(e) => {
+													setTodos((prev) =>
+														markTodo(prev, e.currentTarget.checked, index)
+													);
+												}}
+											/>
 											{todo.name}
 											<span
 												className="badge bg-danger rounded-pill cursor"

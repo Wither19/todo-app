@@ -18,3 +18,22 @@ export function stateIndexRemove(
 	}
 	return arr;
 }
+
+export function markTodo(
+	source: Array<any>,
+	checkVal: boolean,
+	index: number
+): Array<any> {
+	var arr: Array<any> = source.map((item: any, ind: number) => {
+		if (ind == index) {
+			return {
+				done: checkVal,
+				name: item.name,
+			};
+		} else {
+			return item;
+		}
+	});
+
+	return arr;
+}
