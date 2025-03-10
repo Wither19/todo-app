@@ -13,17 +13,24 @@ function App() {
 		},
 	]);
 
+	const [loggedTodos, setLog] = useState(["Sample task"]);
+
 	const updateDraft = () => {
 		const draft = document.getElementById("todo-draft") as HTMLInputElement;
 		setDraftText(draft.value);
 	};
 
 	const submitDraft = (event: any) => {
-		if (event.which == 13) {
-			setTodos((prev) => [...prev, { name: draftText, done: false }]);
-			const draft = document.getElementById("todo-draft") as HTMLInputElement;
-			draft.value = "";
-			updateDraft();
+		if (event.type == "keydown" && event.which == 13) {
+			if (loggedTodos.includes(draftText)) {
+				alert("The Todo list already contains this item!");
+			} else {
+				setTodos((prev) => [...prev, { name: draftText, done: false }]);
+				setLog((prev) => [...prev, draftText]);
+				const draft = document.getElementById("todo-draft") as HTMLInputElement;
+				draft.value = "";
+				updateDraft();
+			}
 		}
 	};
 
@@ -49,9 +56,6 @@ function App() {
 							onChange={updateDraft}
 							onKeyDown={submitDraft}
 						/>
-						<button type="button" className="btn btn-secondary mx-2">
-							Submit
-						</button>
 					</div>
 				</div>
 				<br />
