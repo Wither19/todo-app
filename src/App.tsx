@@ -20,13 +20,14 @@ function App() {
 		setDraftText(draft.value);
 	}
 
+	function allToLowerCase(arr: Array<string>): Array<string> {
+		var lowerArray = arr!.map((item: string) => item.toLowerCase());
+		return lowerArray;
+	}
+
 	function submitTodo(event: any): void {
 		if (event.type == "keydown" && event.which == 13) {
-			if (
-				loggedTodos
-					.map((item) => item.toLowerCase())
-					.includes(draftText.toLowerCase())
-			) {
+			if (allToLowerCase(loggedTodos).includes(draftText.toLowerCase())) {
 				alert("The Todo list already contains this item!");
 			} else if (!draftText) {
 				alert("You cannot add a blank item!");
