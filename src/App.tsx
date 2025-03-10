@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./scss/App.scss";
 
-import "@fontsource-variable/ubuntu-sans-400.css";
+import "@fontsource-variable/ubuntu-sans/standard.css";
 
-import "@fontsource-variable/inter-400.css";
+import "@fontsource-variable/inter/standard.css";
 
 import {
 	allToLowerCase,
@@ -112,13 +112,16 @@ function App() {
 													style={{ transition: "background-color 150ms" }}
 													className="badge bg-info rounded-pill cursor mx-2"
 													onClick={() => {
-														var renameInput = prompt(
-															`What would you like to rename task "${todo.name}"?`
-														);
+														var renameInput =
+															prompt(
+																`What would you like to rename task "${todo.name}"?`
+															) ?? "";
 														setTodos((prev) =>
 															renameTodo(prev, index, renameInput)
 														);
-														setLog((prev) => renameLog(prev, index));
+														setLog((prev) =>
+															renameLog(prev, index, renameInput)
+														);
 													}}>
 													<FaEdit size="20" />
 												</span>

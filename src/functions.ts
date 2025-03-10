@@ -45,30 +45,19 @@ export function renameTodo(
 	index: number,
 	taskName: string | null
 ): Array<any> {
-	var arr: Array<any> = source.map(
-		(item: { done: boolean; name: string }, ind: number) => {
-			if (ind == index && !!taskName) {
-				return {
-					done: item.done,
-					name: taskName,
-				};
-			} else {
-				return item;
-			}
-		}
-	);
+	var arr: Array<any> = [...source];
+	arr[index].name = !!taskName ? taskName : "Unnamed task";
 
 	return arr;
 }
 
-export function renameLog(source: Array<any>, index: number): Array<any> {
-	var arr: Array<any> = source.map((item: string, ind: number) => {
-		if (ind == index) {
-			return;
-		} else {
-			return item;
-		}
-	});
+export function renameLog(
+	source: Array<string>,
+	index: number,
+	taskName: string | null
+): Array<any> {
+	var arr: Array<any> = [...source];
+	arr[index] = !!taskName ? taskName : "Unnamed task";
 
 	return arr;
 }
