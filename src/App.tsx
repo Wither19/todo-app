@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./scss/App.scss";
 
-import "@fontsource-variable/ubuntu-sans";
+import "@fontsource-variable/ubuntu-sans-400.css";
 
-import "@fontsource-variable/inter";
+import "@fontsource-variable/inter-400.css";
 
 import {
 	allToLowerCase,
