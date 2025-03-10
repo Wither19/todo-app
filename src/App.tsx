@@ -28,6 +28,8 @@ function App() {
 					.includes(draftText.toLowerCase())
 			) {
 				alert("The Todo list already contains this item!");
+			} else if (!draftText) {
+				alert("You cannot add a blank item!");
 			} else {
 				setTodos((prev) => [...prev, { name: draftText, done: false }]);
 				setLog((prev) => [...prev, draftText]);
@@ -82,7 +84,7 @@ function App() {
 							{todos.length != 0 ? (
 								todos.map((todo, index) => (
 									<div className="row">
-										<div className="col-6">
+										<div className="col-6 my-2">
 											<li key={todo.name} className="list-group-item">
 												{todo.name}
 											</li>
@@ -91,7 +93,7 @@ function App() {
 											<button
 												onClick={() => removeTodo(index)}
 												type="button"
-												className="btn btn-danger">
+												className="btn btn-danger my-2">
 												<IoMdRemoveCircleOutline />
 											</button>
 										</div>
