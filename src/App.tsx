@@ -25,6 +25,20 @@ function App() {
 		return lowerArray;
 	}
 
+	function stateIndexRemove(
+		source: Array<any>,
+		endIndex: number,
+		isEnd: boolean = false
+	): Array<any> {
+		var arr: Array<any> = [];
+		if (isEnd) {
+			arr = source.slice(0, endIndex);
+		} else {
+			arr = [...source.slice(0, endIndex), ...source.slice(endIndex + 1)];
+		}
+		return arr;
+	}
+
 	function submitTodo(event: any): void {
 		if (event.type == "keydown" && event.which == 13) {
 			if (allToLowerCase(loggedTodos).includes(draftText.toLowerCase())) {
@@ -42,13 +56,15 @@ function App() {
 	}
 
 	function removeTodo(todoIndex: number): void {
+		var end: boolean = false;
 		if (todoIndex + 1 == todos.length) {
-			setTodos((prev) => prev.slice(0, todoIndex));
+			end = true;
+			stateIndexRemove(todos, todoIndex, end);
+			stateIndexRemove(loggedTodos, todoIndex, end);
 		} else {
-			setTodos((prev) => [
-				...prev.slice(0, todoIndex),
-				...prev.slice(todoIndex + 1),
-			]);
+			end = false;
+			stateIndexRemove(todos, todoIndex, end);
+			stateIndexRemove(loggedTodos, todoIndex, end);
 		}
 	}
 
