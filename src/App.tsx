@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.scss";
+import "./scss/App.scss";
 
 import { allToLowerCase, stateIndexRemove, markTodo } from "./functions.ts";
 
