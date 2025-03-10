@@ -24,16 +24,18 @@ export function markTodo(
 	check: boolean,
 	index: number
 ): Array<any> {
-	var arr: Array<any> = source.map((item: any, ind: number) => {
-		if (ind == index) {
-			return {
-				done: check,
-				name: item.name,
-			};
-		} else {
-			return item;
+	var arr: Array<any> = source.map(
+		(item: { done: boolean; name: string }, ind: number) => {
+			if (ind == index) {
+				return {
+					done: check != item.done ? check : item.done,
+					name: item.name,
+				};
+			} else {
+				return item;
+			}
 		}
-	});
+	);
 
 	return arr;
 }
