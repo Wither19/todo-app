@@ -93,11 +93,13 @@ function App() {
 												checked={todo.done}
 												onChange={(e) => {
 													setTodos((prev) =>
-														markTodo(prev, e.currentTarget.checked, index)
+														markTodo(prev, e.target.checked, index)
 													);
 												}}
 											/>
-											{todo.name}
+											<span className={todo.done ? "completed" : ""}>
+												{todo.name}
+											</span>
 											<span
 												className="badge bg-danger rounded-pill cursor"
 												onClick={() => removeTodo(index)}>

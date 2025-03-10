@@ -29,6 +29,11 @@ $text-elems: ("p", "a", "span", "sub", "sup");
 	}
 }
 
+.completed {
+	text-decoration: line-through;
+	color: grey;
+}
+
 .cursor {
 	user-select: none;
 	cursor: pointer;
