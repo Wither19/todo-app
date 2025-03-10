@@ -1,28 +1,32 @@
 import { useState } from "react";
 import "./App.scss";
 
+import { IoMdRemoveCircleOutline } from "react-icons/io";
+
 // import * as bootstrap from "bootstrap";
 
 function App() {
 	const [draftText, setDraftText] = useState("");
-
 	const [todos, setTodos] = useState([
 		{
 			done: true,
 			name: "Sample task",
 		},
 	]);
-
 	const [loggedTodos, setLog] = useState(["Sample task"]);
 
-	const updateDraft = () => {
+	function updateDraft(): void {
 		const draft = document.getElementById("todo-draft") as HTMLInputElement;
 		setDraftText(draft.value);
-	};
+	}
 
-	const submitDraft = (event: any) => {
+	function submitTodo(event: any): void {
 		if (event.type == "keydown" && event.which == 13) {
-			if (loggedTodos.includes(draftText)) {
+			if (
+				loggedTodos
+					.map((item) => item.toLowerCase())
+					.includes(draftText.toLowerCase())
+			) {
 				alert("The Todo list already contains this item!");
 			} else {
 				setTodos((prev) => [...prev, { name: draftText, done: false }]);
@@ -32,7 +36,18 @@ function App() {
 				updateDraft();
 			}
 		}
-	};
+	}
+
+	function removeTodo(todoIndex: number): void {
+		if (todoIndex + 1 == todos.length) {
+			setTodos((prev) => prev.slice(0, todoIndex));
+		} else {
+			setTodos((prev) => [
+				...prev.slice(0, todoIndex),
+				...prev.slice(todoIndex + 1),
+			]);
+		}
+	}
 
 	return (
 		<>
@@ -54,7 +69,7 @@ function App() {
 							id="todo-draft"
 							value={draftText}
 							onChange={updateDraft}
-							onKeyDown={submitDraft}
+							onKeyDown={submitTodo}
 						/>
 					</div>
 				</div>
@@ -64,11 +79,30 @@ function App() {
 				<div className="row">
 					<div className="col-8">
 						<div className="list-group">
-							{todos.map((todo) => (
-								<li key={todo.name} className="list-group-item">
-									{todo.name}
-								</li>
-							))}
+							{todos.length != 0 ? (
+								todos.map((todo, index) => (
+									<div className="row">
+										<div className="col-6">
+											<li key={todo.name} className="list-group-item">
+												{todo.name}
+											</li>
+										</div>
+										<div className="col-2">
+											<button
+												onClick={() => removeTodo(index)}
+												type="button"
+												className="btn btn-danger">
+												<IoMdRemoveCircleOutline />
+											</button>
+										</div>
+									</div>
+								))
+							) : (
+								<>
+									<h1>No Todos Yet</h1>
+									<p>Add some!</p>
+								</>
+							)}
 						</div>
 					</div>
 				</div>
