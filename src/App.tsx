@@ -108,7 +108,7 @@ function App() {
 													style={{ transition: "background-color 150ms" }}
 													className="badge bg-info rounded-pill cursor mx-2"
 													onClick={() => {
-														var renameInput: any = prompt(
+														var renameInput = prompt(
 															`What would you like to rename task "${todo.name}"?`
 														);
 														setTodos((prev) =>

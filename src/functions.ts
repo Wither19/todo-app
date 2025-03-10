@@ -43,11 +43,11 @@ export function markTodo(
 export function renameTodo(
 	source: Array<any>,
 	index: number,
-	taskName: string
+	taskName: string | null
 ): Array<any> {
 	var arr: Array<any> = source.map(
 		(item: { done: boolean; name: string }, ind: number) => {
-			if (ind == index) {
+			if (ind == index && !!taskName) {
 				return {
 					done: item.done,
 					name: taskName,
