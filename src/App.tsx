@@ -98,7 +98,10 @@ function App() {
 												{todo.name}
 											</span>
 											<span
-												className="badge bg-danger rounded-pill cursor"
+												style={{ transition: "background-color 150ms" }}
+												className={`badge bg-${
+													todo.done ? "danger" : "secondary"
+												} rounded-pill cursor`}
 												onClick={() => removeTodo(index)}>
 												<FaTrash size="18" />
 											</span>
