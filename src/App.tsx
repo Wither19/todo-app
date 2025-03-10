@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./scss/App.scss";
 
+import "@fontsource-variable/ubuntu-sans";
+
+import "@fontsource-variable/inter";
+
 import {
 	allToLowerCase,
 	stateIndexRemove,
