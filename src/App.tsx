@@ -1,9 +1,14 @@
 import { useState } from "react";
 import "./scss/App.scss";
 
-import { allToLowerCase, stateIndexRemove, markTodo } from "./functions.ts";
+import {
+	allToLowerCase,
+	stateIndexRemove,
+	markTodo,
+	renameTodo,
+} from "./functions.ts";
 
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 // import * as bootstrap from "bootstrap";
 
@@ -97,14 +102,25 @@ function App() {
 											<span className={todo.done ? "completed" : ""}>
 												{todo.name}
 											</span>
-											<span
-												style={{ transition: "background-color 150ms" }}
-												className={`badge bg-${
-													todo.done ? "danger" : "secondary"
-												} rounded-pill cursor`}
-												onClick={() => removeTodo(index)}>
-												<FaTrash size="18" />
-											</span>
+											<div>
+												<span
+													style={{ transition: "background-color 150ms" }}
+													className="badge bg-info rounded-pill cursor mx-2"
+													onClick={() => {
+														setTodos((prev) => renameTodo(prev, index));
+														setLog((prev) => renameLog(prev, index));
+													}}>
+													<FaEdit size="20" />
+												</span>
+												<span
+													style={{ transition: "background-color 150ms" }}
+													className={`badge bg-${
+														todo.done ? "danger" : "secondary"
+													} rounded-pill cursor mx-2`}
+													onClick={() => removeTodo(index)}>
+													<FaTrash size="20" />
+												</span>
+											</div>
 										</li>
 									</>
 								))

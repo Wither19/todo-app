@@ -39,3 +39,32 @@ export function markTodo(
 
 	return arr;
 }
+
+export function renameTodo(source: Array<any>, index: number): Array<any> {
+	var arr: Array<any> = source.map(
+		(item: { done: boolean; name: string }, ind: number) => {
+			if (ind == index) {
+				return {
+					done: item.done,
+					name: content,
+				};
+			} else {
+				return item;
+			}
+		}
+	);
+
+	return arr;
+}
+
+export function renameLog(source: Array<any>, index: number): Array<any> {
+	var arr: Array<any> = source.map((item: string, ind: number) => {
+		if (ind == index) {
+			return ;
+		} else {
+			return item;
+		}
+	});
+
+	return arr;
+}
