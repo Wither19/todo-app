@@ -38,3 +38,14 @@ $text-elems: ("p", "a", "span", "sub", "sup");
 	user-select: none;
 	cursor: pointer;
 }
+
+.list-group-item {
+	.badge {
+		opacity: 0;
+		transition: background-color 150ms, opacity 200ms;
+	}
+	&:hover .badge,
+	.badge:hover {
+		opacity: 1;
+	}
+}

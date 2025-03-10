@@ -109,7 +109,6 @@ function App() {
 											</span>
 											<div>
 												<span
-													style={{ transition: "background-color 150ms" }}
 													className="badge bg-info rounded-pill cursor mx-2"
 													onClick={() => {
 														var renameInput =
@@ -126,7 +125,6 @@ function App() {
 													<FaEdit size="20" />
 												</span>
 												<span
-													style={{ transition: "background-color 150ms" }}
 													className={`badge bg-${
 														todo.done ? "danger" : "secondary"
 													} rounded-pill cursor mx-2`}
