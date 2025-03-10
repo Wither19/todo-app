@@ -28,3 +28,8 @@ $text-elems: ("p", "a", "span", "sub", "sup");
 		font-family: $text-font;
 	}
 }
+
+.cursor {
+	user-select: none;
+	cursor: pointer;
+}

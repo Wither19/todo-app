@@ -1,42 +1,29 @@
 import { useState } from "react";
 import "./App.scss";
 
+import { allToLowerCase, stateIndexRemove } from "./functions.ts";
+
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 
 // import * as bootstrap from "bootstrap";
 
 function App() {
+	// State bound to todo addition input
 	const [draftText, setDraftText] = useState("");
+	// Object structure for a todo item
 	const [todos, setTodos] = useState([
 		{
 			done: true,
 			name: "Sample task",
 		},
 	]);
+	// A record of all todos in a simple array, used to detect duplicates.
 	const [loggedTodos, setLog] = useState(["Sample task"]);
 
+	// Updates the value of the draft state to the input value.
 	function updateDraft(): void {
 		const draft = document.getElementById("todo-draft") as HTMLInputElement;
 		setDraftText(draft.value);
-	}
-
-	function allToLowerCase(arr: Array<string>): Array<string> {
-		var lowerArray = arr!.map((item: string) => item.toLowerCase());
-		return lowerArray;
-	}
-
-	function stateIndexRemove(
-		source: Array<any>,
-		endIndex: number,
-		isEnd: boolean = false
-	): Array<any> {
-		var arr: Array<any> = [];
-		if (isEnd) {
-			arr = source.slice(0, endIndex);
-		} else {
-			arr = [...source.slice(0, endIndex), ...source.slice(endIndex + 1)];
-		}
-		return arr;
 	}
 
 	function submitTodo(event: any): void {
@@ -80,41 +67,34 @@ function App() {
 				</div>
 				<br />
 				<br />
-				<div className="row">
-					<div className="col-4"></div>
-					<div className="col-8">
-						<input
-							type="text"
-							id="todo-draft"
-							value={draftText}
-							onChange={updateDraft}
-							onKeyDown={submitTodo}
-						/>
-					</div>
-				</div>
+				<input
+					type="text"
+					className="input-lg"
+					id="todo-draft"
+					value={draftText}
+					onChange={updateDraft}
+					onKeyDown={submitTodo}
+				/>
 				<br />
 				<br />
 				<br />
 				<div className="row">
-					<div className="col-8">
-						<div className="list-group">
+					<div className="col-4">
+						<ul className="list-group">
 							{todos.length != 0 ? (
 								todos.map((todo, index) => (
-									<div className="row">
-										<div className="col-6 my-2">
-											<li key={todo.name} className="list-group-item">
-												{todo.name}
-											</li>
-										</div>
-										<div className="col-2">
-											<button
-												onClick={() => removeTodo(index)}
-												type="button"
-												className="btn btn-danger my-2">
-												<IoMdRemoveCircleOutline />
-											</button>
-										</div>
-									</div>
+									<>
+										<li
+											key={todo.name}
+											className="list-group-item d-flex justify-content-between align-items-center">
+											{todo.name}
+											<span
+												className="badge bg-danger rounded-pill cursor"
+												onClick={() => removeTodo(index)}>
+												<IoMdRemoveCircleOutline size="24" />
+											</span>
+										</li>
+									</>
 								))
 							) : (
 								<>
@@ -122,7 +102,7 @@ function App() {
 									<p>Add some!</p>
 								</>
 							)}
-						</div>
+						</ul>
 					</div>
 				</div>
 			</div>
