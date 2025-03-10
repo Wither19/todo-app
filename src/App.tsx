@@ -6,6 +6,7 @@ import {
 	stateIndexRemove,
 	markTodo,
 	renameTodo,
+	renameLog,
 } from "./functions.ts";
 
 import { FaTrash, FaEdit } from "react-icons/fa";
@@ -107,7 +108,9 @@ function App() {
 													style={{ transition: "background-color 150ms" }}
 													className="badge bg-info rounded-pill cursor mx-2"
 													onClick={() => {
-														setTodos((prev) => renameTodo(prev, index));
+														setTodos((prev) =>
+															renameTodo(prev, index, todo.name)
+														);
 														setLog((prev) => renameLog(prev, index));
 													}}>
 													<FaEdit size="20" />

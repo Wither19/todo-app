@@ -40,13 +40,20 @@ export function markTodo(
 	return arr;
 }
 
-export function renameTodo(source: Array<any>, index: number): Array<any> {
+export function renameTodo(
+	source: Array<any>,
+	index: number,
+	taskName: string
+): Array<any> {
+	var renameInput: any = prompt(
+		`What would you like to rename task "${taskName}"?`
+	);
 	var arr: Array<any> = source.map(
 		(item: { done: boolean; name: string }, ind: number) => {
 			if (ind == index) {
 				return {
 					done: item.done,
-					name: content,
+					name: renameInput,
 				};
 			} else {
 				return item;
