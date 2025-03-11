@@ -7,12 +7,6 @@ import {
 	renameLog,
 } from "./functions.ts";
 
-// import * as bootstrap from "bootstrap";
-
-import "@fontsource-variable/ubuntu-sans/standard.css";
-
-import "@fontsource-variable/inter/standard.css";
-
 import TodoListItem from "./TodoListItem";
 
 // State bound to todo addition input
