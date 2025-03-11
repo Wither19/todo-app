@@ -5,6 +5,8 @@ import "@fontsource-variable/ubuntu-sans/standard.css";
 
 import "@fontsource-variable/inter/standard.css";
 
+import TodoListItem from "./TodoListItem";
+
 import {
 	allToLowerCase,
 	stateIndexRemove,
@@ -12,8 +14,6 @@ import {
 	renameTodo,
 	renameLog,
 } from "./functions.ts";
-
-import { FaTrash, FaEdit } from "react-icons/fa";
 
 // import * as bootstrap from "bootstrap";
 
@@ -85,56 +85,36 @@ function App() {
 							{todos.length != 0 ? (
 								todos.map((todo, index) => (
 									<>
-										<li
+										<TodoListItem
 											key={todo.name}
-											className="list-group-item d-flex justify-content-between align-items-center">
-											<input
-												className="form-check-input my-1"
-												type="checkbox"
-												checked={todo.done}
-												onChange={(e) => {
-													setTodos((prev) =>
-														markTodo(prev, e.target.checked, index)
-													);
-												}}
-											/>
-											<span className={todo.done ? "completed" : ""}>
-												{todo.name}
-											</span>
-											<div>
-												<span
-													className="badge bg-info rounded-pill cursor mx-2"
-													onClick={() => {
-														var renameInput =
-															prompt(
-																`What would you like to rename '${todo.name}'?`
-															) ?? "";
-														setTodos((prev) =>
-															renameTodo(prev, index, renameInput)
-														);
-														setLog((prev) =>
-															renameLog(prev, index, renameInput)
-														);
-													}}>
-													<FaEdit size="20" />
-												</span>
-												<span
-													className={`badge bg-${
-														todo.done ? "danger" : "secondary"
-													} rounded-pill cursor mx-2`}
-													onClick={() => {
-														var dialog = confirm(
-															`Are you sure you want to delete '${todo.name}'?`
-														);
+											listInd={index}
+											completed={todo.done}
+											checkFunction={(e: any) => {
+												setTodos((prev) =>
+													markTodo(prev, e.target.checked, index)
+												);
+											}}
+											renameFunction={() => {
+												var renameInput =
+													prompt(
+														`What would you like to rename '${todo.name}'?`
+													) ?? "";
+												setTodos((prev) =>
+													renameTodo(prev, index, renameInput)
+												);
+												setLog((prev) => renameLog(prev, index, renameInput));
+											}}
+											deleteFunction={() => {
+												var dialog = confirm(
+													`Are you sure you want to delete '${todo.name}'?`
+												);
 
-														if (dialog) {
-															removeTodo(index);
-														}
-													}}>
-													<FaTrash size="20" />
-												</span>
-											</div>
-										</li>
+												if (dialog) {
+													removeTodo(index);
+												}
+											}}>
+											{todo.name}
+										</TodoListItem>
 									</>
 								))
 							) : (
