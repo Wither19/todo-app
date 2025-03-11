@@ -115,7 +115,7 @@ function App() {
 													onClick={() => {
 														var renameInput =
 															prompt(
-																`What would you like to rename task "${todo.name}"?`
+																`What would you like to rename '${todo.name}'?`
 															) ?? "";
 														setTodos((prev) =>
 															renameTodo(prev, index, renameInput)
@@ -130,7 +130,15 @@ function App() {
 													className={`badge bg-${
 														todo.done ? "danger" : "secondary"
 													} rounded-pill cursor mx-2`}
-													onClick={() => removeTodo(index)}>
+													onClick={() => {
+														var dialog = confirm(
+															`Are you sure you want to delete '${todo.name}'?`
+														);
+
+														if (dialog) {
+															removeTodo(index);
+														}
+													}}>
 													<FaTrash size="20" />
 												</span>
 											</div>
