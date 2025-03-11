@@ -103,9 +103,13 @@ function App() {
 												setLog((prev) => renameLog(prev, index, renameInput));
 											}}
 											deleteFunction={() => {
-												const deleteDialog: string = `Are you sure you want to delete '${todo.name}'?`;
-												var dialog = confirm(deleteDialog);
-												if (dialog) {
+												if (!todo.done) {
+													const deleteDialog: string = `Are you sure you want to delete '${todo.name}'?`;
+													var dialog = confirm(deleteDialog);
+													if (dialog) {
+														removeTodo(index);
+													}
+												} else {
 													removeTodo(index);
 												}
 											}}>
