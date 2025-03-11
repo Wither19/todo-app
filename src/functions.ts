@@ -1,4 +1,8 @@
-// Iterates through an array to convert all its strings to lowercase.
+/**
+ * Iterates through an array to convert all its strings to lowercase.
+ * @param {Array<string>} arr The array to convert.
+ *
+ */
 export function allToLowerCase(arr: Array<string>): Array<string> {
 	var lowerArray = arr!.map((item: string) => item.toLowerCase());
 	return lowerArray;
@@ -6,8 +10,9 @@ export function allToLowerCase(arr: Array<string>): Array<string> {
 
 /**
  * Function to update a React state array without a particular index.
- * @param {Array<any>} [source] The source array borrowed from a previous state.
- * @param {number} [endIndex] The index to be removed.
+ * @param {Array<any>} source The source array.
+ * @param {number} endIndex The index to be removed.
+ * @returns {Array<any>} The array with the selected index removed.
  */
 export function stateIndexRemove(
 	source: Array<any>,
@@ -22,7 +27,12 @@ export function stateIndexRemove(
 	return arr;
 }
 
-// Changes the checkbox value in the todo array.
+/**
+ * Changes a checkbox value in the todo array.
+ * @param {Array<any>} source The source array.
+ * @param {boolean} check The check value.
+ * @param {number} index The index whose check value needs to change.
+ */
 export function markTodo(
 	source: Array<any>,
 	check: boolean,
@@ -44,7 +54,13 @@ export function markTodo(
 	return arr;
 }
 
-// Renames an existing item in the todo array.
+/**
+ * Renames an existing item in the todo array.
+ * @param {Array<any>} source The source array.
+ * @param {number} index The index that needs to be renamed.
+ * @param {string | null} taskName The new name.
+ * @returns
+ */
 export function renameTodo(
 	source: Array<any>,
 	index: number,
