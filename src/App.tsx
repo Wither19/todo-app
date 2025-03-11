@@ -32,7 +32,7 @@ function App() {
 		},
 	]);
 	// A record of all todos in a simple array, used to detect duplicates.
-	const [loggedTodos, setLog] = useState(["Sample task"]);
+	const [loggedTodos, setLog] = useState(["Sample task", "Sample task 2"]);
 
 	// Updates the value of the draft state to the input value.
 	function updateDraft(): void {
@@ -95,7 +95,7 @@ function App() {
 											completed={todo.done}
 											checkFunction={(e: any) => {
 												setTodos((prev) =>
-													markTodo(prev, e.target.checked, index)
+													markTodo(prev, index, e.target.checked)
 												);
 											}}
 											renameFunction={() => {
