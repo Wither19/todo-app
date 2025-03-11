@@ -48,7 +48,7 @@ export function renameTodo(
 	taskName: string | null
 ): Array<any> {
 	var arr: Array<any> = [...source];
-	arr[index].name = !!taskName ? taskName : "Unnamed task";
+	arr[index].name = !!taskName ? taskName : "[Unnamed task]";
 
 	return arr;
 }
@@ -60,7 +60,7 @@ export function renameLog(
 	taskName: string | null
 ): Array<any> {
 	var arr: Array<any> = [...source];
-	arr[index] = !!taskName ? taskName : "Unnamed task";
+	arr[index] = !!taskName ? taskName : "[Unnamed task]";
 
 	return arr;
 }
