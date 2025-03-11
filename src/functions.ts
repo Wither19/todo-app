@@ -80,7 +80,6 @@ export function renameTodo(
 	return arr;
 }
 
-// Executes with renameTodo() to make the todo item log reflect the array.
 /**
  * Renames a task in the provided array at the specified index.
  * If the task name is null, it assigns "[Unnamed task]" to the task.
