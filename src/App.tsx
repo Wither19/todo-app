@@ -26,6 +26,10 @@ function App() {
 			done: false,
 			name: "Sample task",
 		},
+		{
+			done: true,
+			name: "Sample task 2",
+		},
 	]);
 	// A record of all todos in a simple array, used to detect duplicates.
 	const [loggedTodos, setLog] = useState(["Sample task"]);
