@@ -95,20 +95,16 @@ function App() {
 												);
 											}}
 											renameFunction={() => {
-												var renameInput =
-													prompt(
-														`What would you like to rename '${todo.name}'?`
-													) ?? "";
+												const renameDialog: string = `What would you like to rename '${todo.name}'?`;
+												var renameInput = prompt(renameDialog) ?? "";
 												setTodos((prev) =>
 													renameTodo(prev, index, renameInput)
 												);
 												setLog((prev) => renameLog(prev, index, renameInput));
 											}}
 											deleteFunction={() => {
-												var dialog = confirm(
-													`Are you sure you want to delete '${todo.name}'?`
-												);
-
+												const deleteDialog: string = `Are you sure you want to delete '${todo.name}'?`;
+												var dialog = confirm(deleteDialog);
 												if (dialog) {
 													removeTodo(index);
 												}
