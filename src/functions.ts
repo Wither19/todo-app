@@ -4,14 +4,17 @@ export function allToLowerCase(arr: Array<string>): Array<string> {
 	return lowerArray;
 }
 
-// Function to update a React state array without a particular index.
+/**
+ * Function to update a React state array without a particular index.
+ * @param {Array<any>} [source] The source array borrowed from a previous state.
+ * @param {number} [endIndex] The index to be removed.
+ */
 export function stateIndexRemove(
 	source: Array<any>,
-	endIndex: number,
-	isEnd: boolean = false
+	endIndex: number
 ): Array<any> {
 	var arr: Array<any> = [];
-	if (isEnd) {
+	if (endIndex == source.length - 1) {
 		arr = source.slice(0, endIndex);
 	} else {
 		arr = [...source.slice(0, endIndex), ...source.slice(endIndex + 1)];

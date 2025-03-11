@@ -55,16 +55,8 @@ function App() {
 
 	// Removes the list item through each individual delete button.
 	function removeTodo(todoIndex: number): void {
-		var end: boolean = false;
-		if (todoIndex + 1 == todos.length) {
-			end = true;
-			setTodos((prev) => stateIndexRemove(prev, todoIndex, end));
-			setLog((prev) => stateIndexRemove(prev, todoIndex, end));
-		} else {
-			end = false;
-			setTodos((prev) => stateIndexRemove(prev, todoIndex, end));
-			setLog((prev) => stateIndexRemove(prev, todoIndex, end));
-		}
+		setTodos((prev) => stateIndexRemove(prev, todoIndex));
+		setLog((prev) => stateIndexRemove(prev, todoIndex));
 	}
 
 	return (
