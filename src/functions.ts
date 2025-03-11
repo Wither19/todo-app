@@ -1,7 +1,7 @@
 /**
  * Iterates through an array to convert all its strings to lowercase.
  * @param {Array<string>} arr The array to convert.
- *
+ * @returns {Array<string>} The array with all lowercase values.
  */
 export function allToLowerCase(arr: Array<string>): Array<string> {
 	var lowerArray = arr!.map((item: string) => item.toLowerCase());
