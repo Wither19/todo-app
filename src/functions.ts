@@ -81,7 +81,7 @@ export function renameTodo(
 
 /**
  * Renames a task in the provided array at the specified index.
- * If the task name is null, it assigns "[Unnamed task]" to the task.
+ * If the task name is null, it assigns the string "[Unnamed task]".
  *
  * @param {Array<string>} source - The array of task names.
  * @param {number} index - The index of the task to rename.
