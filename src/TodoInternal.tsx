@@ -32,7 +32,7 @@ function TodoInternal() {
       if (allToLowerCase(loggedTodos).includes(draftText.toLowerCase())) {
         alert("The Todo list already contains this item!");
       } else if (!draftText) {
-        alert("You cannot add a blank item!");
+        setDraftText("[Unnamed task]");
       } else {
         setTodos((prev) => [...prev, { name: draftText, done: false }]);
         setLog((prev) => [...prev, draftText]);
