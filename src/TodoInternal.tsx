@@ -49,6 +49,29 @@ function TodoInternal() {
     setLog((prev) => stateIndexRemove(prev, todoIndex));
   }
 
+  function handleCheck(event: any, ind: number) {
+    setTodos((prev) => markTodo(prev, ind, event.target.checked));
+  }
+
+  function handleRename(taskName: string, ind: number) {
+    const renameDialog: string = `What would you like to rename '${taskName}'?`;
+    var renameInput = prompt(renameDialog) ?? "";
+    setTodos((prev) => renameTodo(prev, ind, renameInput));
+    setLog((prev) => renameLog(prev, ind, renameInput));
+  }
+
+  function handleDelete(taskName: string, ind: number, completed: boolean) {
+    if (!completed) {
+      const deleteDialog: string = `Are you sure you want to delete '${taskName}'?`;
+      var dialog = confirm(deleteDialog);
+      if (dialog) {
+        removeTodo(ind);
+      }
+    } else {
+      removeTodo(ind);
+    }
+  }
+
   return (
     <>
       <input
@@ -69,26 +92,9 @@ function TodoInternal() {
                     key={todo.name}
                     listInd={index}
                     completed={todo.done}
-                    checkFunction={(e: any) => {
-                      setTodos((prev) => markTodo(prev, index, e.target.checked));
-                    }}
-                    renameFunction={() => {
-                      const renameDialog: string = `What would you like to rename '${todo.name}'?`;
-                      var renameInput = prompt(renameDialog) ?? "";
-                      setTodos((prev) => renameTodo(prev, index, renameInput));
-                      setLog((prev) => renameLog(prev, index, renameInput));
-                    }}
-                    deleteFunction={() => {
-                      if (!todo.done) {
-                        const deleteDialog: string = `Are you sure you want to delete '${todo.name}'?`;
-                        var dialog = confirm(deleteDialog);
-                        if (dialog) {
-                          removeTodo(index);
-                        }
-                      } else {
-                        removeTodo(index);
-                      }
-                    }}
+                    checkFunction={() => handleCheck(event, index)}
+                    renameFunction={() => handleRename(todo.name, index)}
+                    deleteFunction={() => handleDelete(todo.name, index, todo.done)}
                   >
                     {todo.name}
                   </TodoListItem>
