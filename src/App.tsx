@@ -1,6 +1,6 @@
 import "./scss/App.scss";
 
-import TodoInternal from "./TodoInternal";
+import TodoInternal from "./components/TodoInternal";
 
 function App() {
   return (
