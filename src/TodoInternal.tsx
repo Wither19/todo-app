@@ -32,15 +32,14 @@ function TodoInternal() {
       if (allToLowerCase(loggedTodos).includes(draftText.toLowerCase())) {
         alert("The Todo list already contains this item!");
       } else if (!draftText) {
-        setTodos((prev) => [...prev, { name: "[Unnamed task]", done: false }]);
-        setLog((prev) => [...prev, "[Unnamed task]"]);
+        alert("You cannot add a blank item!");
       } else {
         setTodos((prev) => [...prev, { name: draftText, done: false }]);
         setLog((prev) => [...prev, draftText]);
+        const draft = document.getElementById("todo-draft") as HTMLInputElement;
+        draft.value = "";
+        updateDraft();
       }
-      const draft = document.getElementById("todo-draft") as HTMLInputElement;
-      draft.value = "";
-      updateDraft();
     }
   }
 
