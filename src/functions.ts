@@ -65,7 +65,6 @@ export function markTodo(
  * @param {Array<any>} source - The array of todo items.
  * @param {number} index - The index of the todo item to rename.
  * @param {string | null} taskName - The new name for the todo item. If null, the name will be set to "[Unnamed task]".
- *
  * @returns {Array<any>} A new array with the updated todo item name.
  *
  */
