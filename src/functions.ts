@@ -1,10 +1,13 @@
+type Arr = Array<any>;
+type Strs = Array<string>;
+
 /**
  * Converts all strings in the given array to lowercase.
  *
  * @param arr - An array of strings to be converted to lowercase.
  * @returns An array of strings where each string is in lowercase.
  */
-export function allToLowerCase(arr: Array<string>): Array<string> {
+export function allToLowerCase(arr: Strs): Strs {
 	var lowerArray = arr!.map((item: string) => item.toLowerCase());
 	return lowerArray;
 }
@@ -16,11 +19,8 @@ export function allToLowerCase(arr: Array<string>): Array<string> {
  * @param endIndex - The index of the element to be removed.
  * @returns A new array with the element removed.
  */
-export function stateIndexRemove(
-	source: Array<any>,
-	endIndex: number
-): Array<any> {
-	var arr: Array<any> = [];
+export function stateIndexRemove(source: Arr, endIndex: number): Arr {
+	var arr: Arr = [];
 	if (endIndex == source.length - 1) {
 		arr = source.slice(0, endIndex);
 	} else {
@@ -37,12 +37,8 @@ export function stateIndexRemove(
  * @param {number} index - The index of the todo item to be updated.
  * @returns {Array<any>} - A new array with the updated todo item.
  */
-export function markTodo(
-	source: Array<any>,
-	index: number,
-	check: boolean
-): Array<any> {
-	var arr: Array<any> = source.map(
+export function markTodo(source: Arr, index: number, check: boolean): Arr {
+	var arr: Arr = source.map(
 		(item: { done: boolean; name: string }, ind: number) => {
 			if (ind == index) {
 				return {
@@ -69,11 +65,11 @@ export function markTodo(
  *
  */
 export function renameTodo(
-	source: Array<any>,
+	source: Arr,
 	index: number,
 	taskName: string | null
-): Array<any> {
-	var arr: Array<any> = [...source];
+): Arr {
+	var arr: Arr = [...source];
 	arr[index].name = !!taskName ? taskName : "[Unnamed task]";
 
 	return arr;
@@ -89,11 +85,11 @@ export function renameTodo(
  * @returns {Array<any>} A new array with the updated task name.
  */
 export function renameLog(
-	source: Array<string>,
+	source: Strs,
 	index: number,
 	taskName: string | null
-): Array<any> {
-	var arr: Array<any> = [...source];
+): Arr {
+	var arr: Arr = [...source];
 	arr[index] = !!taskName ? taskName : "[Unnamed task]";
 
 	return arr;
