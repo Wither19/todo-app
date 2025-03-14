@@ -13,11 +13,13 @@ import {
 import TodoListItem from "./TodoListItem";
 import _ from "lodash";
 
+type todo = Array<{ name: string; done: boolean }>;
+
 function TodoInternal() {
 	// State bound to todo addition input
 	const [draftText, setDraftText] = useState<string>("");
 	// Object structure for a todo item
-	const [todos, setTodos] = useState<Array<{ name: string; done: boolean }>>([
+	const [todos, setTodos] = useState<Todo>([
 		{
 			name: "Sample task",
 			done: false,
