@@ -4,13 +4,13 @@ function TodoListItem(props: any) {
 	return (
 		<li
 			key={props.children}
-			className="list-group-item d-flex justify-content-between align-items-center">
+			className="list-group-item d-flex justify-content-between align-items-center cursor"
+			onDoubleClick={props.selectFunction}>
 			<input
 				className="form-check-input my-1"
 				type="checkbox"
 				checked={props.completed}
 				onChange={props.checkFunction}
-				onDoubleClick={props.selectFunction}
 			/>
 			<span className={props.completed ? "completed" : ""}>
 				{props.children}

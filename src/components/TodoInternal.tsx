@@ -92,11 +92,10 @@ function TodoInternal() {
 		ind: number,
 		domNode: string
 	) {
+		$(domNode)!.toggleClass("active");
 		if (deletions.includes(todos[ind].name)) {
-			$(domNode)!.removeClass("active");
 			setDeletions((prev) => prev.filter(_, (index: number) => index != ind));
 		} else {
-			$(domNode)!.addClass("active");
 			let arr: Array<string> = deletions;
 			deletions.push(todos[ind].name);
 			setDeletions(arr);
@@ -129,7 +128,6 @@ function TodoInternal() {
 											handleDelete(todo.name, index, todo.done)
 										}
 										selectFunction={(e: any) => {
-											e.stopPropagation();
 											handleSelect(deletionQueue, index, e.target);
 										}}>
 										{todo.name}
