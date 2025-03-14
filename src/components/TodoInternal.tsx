@@ -13,7 +13,7 @@ import {
 import TodoListItem from "./TodoListItem";
 import _ from "lodash";
 
-type todo = Array<{ name: string; done: boolean }>;
+type Todo = Array<{ name: string; done: boolean }>;
 
 function TodoInternal() {
 	// State bound to todo addition input
