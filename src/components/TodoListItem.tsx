@@ -10,6 +10,7 @@ function TodoListItem(props: any) {
 				type="checkbox"
 				checked={props.completed}
 				onChange={props.checkFunction}
+				onDoubleClick={props.selectFunction}
 			/>
 			<span className={props.completed ? "completed" : ""}>
 				{props.children}

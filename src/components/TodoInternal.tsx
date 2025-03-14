@@ -1,4 +1,7 @@
 import { useState } from "react";
+
+import $ from "jquery";
+
 import {
 	allToLowerCase,
 	stateIndexRemove,
@@ -8,6 +11,7 @@ import {
 } from "../functions.ts";
 
 import TodoListItem from "./TodoListItem";
+import _ from "lodash";
 
 function TodoInternal() {
 	// State bound to todo addition input
@@ -83,7 +87,21 @@ function TodoInternal() {
 		}
 	}
 
-	function handleSelect(ind: number) {}
+	function handleSelect(
+		deletions: Array<string>,
+		ind: number,
+		domNode: string
+	) {
+		if (deletions.includes(todos[ind].name)) {
+			$(domNode)!.removeClass("active");
+			setDeletions((prev) => prev.filter(_, (index: number) => index != ind));
+		} else {
+			$(domNode)!.addClass("active");
+			let arr: Array<string> = deletions;
+			deletions.push(todos[ind].name);
+			setDeletions(arr);
+		}
+	}
 
 	return (
 		<>
@@ -110,9 +128,9 @@ function TodoInternal() {
 										deleteFunction={() =>
 											handleDelete(todo.name, index, todo.done)
 										}
-										selectFunction={(e) => {
+										selectFunction={(e: any) => {
 											e.stopPropagation();
-											handleSelect(index);
+											handleSelect(deletionQueue, index, e.target);
 										}}>
 										{todo.name}
 									</TodoListItem>
