@@ -11,20 +11,25 @@ import TodoListItem from "./TodoListItem";
 
 function TodoInternal() {
 	// State bound to todo addition input
-	const [draftText, setDraftText] = useState("");
+	const [draftText, setDraftText] = useState<string>("");
 	// Object structure for a todo item
-	const [todos, setTodos] = useState([
+	const [todos, setTodos] = useState<Array<{ name: string; done: boolean }>>([
 		{
-			done: false,
 			name: "Sample task",
+			done: false,
 		},
 		{
-			done: true,
 			name: "Sample task 2",
+			done: true,
 		},
 	]);
 	// A record of all todos in a simple array, used to detect duplicates.
-	const [loggedTodos, setLog] = useState(["Sample task", "Sample task 2"]);
+	const [loggedTodos, setLog] = useState<Array<string>>([
+		"Sample task",
+		"Sample task 2",
+	]);
+
+	const [deletionQueue, setDeletions] = useState<Array<string>>([]);
 
 	// Updates the value of the draft state to the input value.
 	function updateDraft(): void {
@@ -78,6 +83,8 @@ function TodoInternal() {
 		}
 	}
 
+	function handleSelect(ind: number) {}
+
 	return (
 		<>
 			<input
@@ -102,7 +109,11 @@ function TodoInternal() {
 										renameFunction={() => handleRename(todo.name, index)}
 										deleteFunction={() =>
 											handleDelete(todo.name, index, todo.done)
-										}>
+										}
+										selectFunction={(e) => {
+											e.stopPropagation();
+											handleSelect(index);
+										}}>
 										{todo.name}
 									</TodoListItem>
 								</>
