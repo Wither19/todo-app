@@ -1,6 +1,12 @@
 type Arr = Array<any>;
 type Strs = Array<string>;
 
+type RenameFn = {
+	source: Arr | Strs;
+	index: number;
+	taskName: string | null;
+};
+
 /**
  * Converts all strings in the given array to lowercase.
  *
@@ -64,13 +70,9 @@ export function markTodo(source: Arr, index: number, check: boolean): Arr {
  * @returns {Array<any>} A new array with the updated todo item name.
  *
  */
-export function renameTodo(
-	source: Arr,
-	index: number,
-	taskName: string | null
-): Arr {
-	var arr: Arr = [...source];
-	arr[index].name = !!taskName ? taskName : "[Unnamed task]";
+export function renameTodo(fn: RenameFn): Arr {
+	var arr: Arr = [...fn.source];
+	arr[fn.index].name = !!fn.taskName ? fn.taskName : "[Unnamed task]";
 
 	return arr;
 }
@@ -84,13 +86,9 @@ export function renameTodo(
  * @param {string | null} taskName - The new name for the task, or null to assign a default name.
  * @returns {Array<any>} A new array with the updated task name.
  */
-export function renameLog(
-	source: Strs,
-	index: number,
-	taskName: string | null
-): Arr {
-	var arr: Arr = [...source];
-	arr[index] = !!taskName ? taskName : "[Unnamed task]";
+export function renameLog(fn: RenameFn): Arr {
+	var arr: Arr = [...fn.source];
+	arr[fn.index] = !!fn.taskName ? fn.taskName : "[Unnamed task]";
 
 	return arr;
 }
