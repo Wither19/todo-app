@@ -15,7 +15,7 @@ $headers: (
 	".display-3",
 	".display-4"
 );
-$text-elems: ("p", "a", "span", "sub", "sup");
+$text-elems: ("p", "a", "span", "sub", "sup", ".list-group-item");
 
 @each $header in $headers {
 	#{$header} {
