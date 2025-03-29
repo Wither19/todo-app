@@ -30,12 +30,12 @@ function TodoInternal() {
 		},
 	]);
 	// A record of all todos in a simple array, used to detect duplicates.
-	const [loggedTodos, setLog] = useState<Array<string>>([
+	const [loggedTodos, setLog] = useState<string[]>([
 		"Sample task",
 		"Sample task 2",
 	]);
 
-	const [deletionQueue, setDeletions] = useState<Array<string>>([]);
+	const [deletionQueue, setDeletions] = useState<string[]>([]);
 
 	// Updates the value of the draft state to the input value.
 	function updateDraft(): void {
@@ -73,8 +73,12 @@ function TodoInternal() {
 	function handleRename(taskName: string, ind: number) {
 		const renameDialog: string = `What would you like to rename '${taskName}'?`;
 		var renameInput = prompt(renameDialog) ?? "";
-		setTodos((prev) => renameTodo(prev, ind, renameInput));
-		setLog((prev) => renameLog(prev, ind, renameInput));
+		setTodos((prev) =>
+			renameTodo({ source: prev, index: ind, taskName: renameInput })
+		);
+		setLog((prev) =>
+			renameLog({ source: prev, index: ind, taskName: renameInput })
+		);
 	}
 
 	function handleDelete(taskName: string, ind: number, completed: boolean) {
