@@ -1,5 +1,5 @@
-type Arr = Array<any>;
-type Strs = Array<string>;
+type Arr = any[];
+type Strs = string[];
 
 type RenameFn = {
 	source: Arr | Strs;
