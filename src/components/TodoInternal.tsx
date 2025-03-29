@@ -93,6 +93,8 @@ function TodoInternal() {
 		}
 	}
 
+	function handleMassDelete() {}
+
 	function handleSelect(
 		deletions: Array<string>,
 		ind: number,
@@ -130,9 +132,12 @@ function TodoInternal() {
 										completed={todo.done}
 										checkFunction={() => handleCheck(event, index)}
 										renameFunction={() => handleRename(todo.name, index)}
-										deleteFunction={() =>
-											handleDelete(todo.name, index, todo.done)
-										}
+										deleteFunction={() => {
+											if (deletionQueue[index]) {
+												handleMassDelete();
+											}
+											handleDelete(todo.name, index, todo.done);
+										}}
 										selectFunction={(e: any) => {
 											handleSelect(deletionQueue, index, e.target);
 										}}>
