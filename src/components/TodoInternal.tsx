@@ -13,13 +13,13 @@ import {
 import TodoListItem from "./TodoListItem";
 import _ from "lodash";
 
-type Todo = Array<{ name: string; done: boolean }>;
+type Todo = { name: string; done: boolean };
 
 function TodoInternal() {
 	// State bound to todo addition input
 	const [draftText, setDraftText] = useState<string>("");
 	// Object structure for a todo item
-	const [todos, setTodos] = useState<Todo>([
+	const [todos, setTodos] = useState<Todo[]>([
 		{
 			name: "Sample task",
 			done: false,
@@ -44,7 +44,7 @@ function TodoInternal() {
 	}
 
 	// Submits what is in the draft to a new entry in the todo array, and the todo log. Updates the UI, of course.
-	function submitTodo(event: any): void {
+	function submitTodo(event: any) {
 		if (event.which == 13) {
 			if (allToLowerCase(loggedTodos).includes(draftText.toLowerCase())) {
 				alert("The Todo list already contains this item!");
@@ -61,7 +61,7 @@ function TodoInternal() {
 	}
 
 	// Removes the list item through each individual delete button.
-	function removeTodo(todoIndex: number): void {
+	function removeTodo(todoIndex: number) {
 		setTodos((prev) => stateIndexRemove(prev, todoIndex));
 		setLog((prev) => stateIndexRemove(prev, todoIndex));
 	}
