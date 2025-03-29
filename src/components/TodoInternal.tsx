@@ -72,7 +72,7 @@ function TodoInternal() {
 
 	function handleRename(taskName: string, ind: number) {
 		const renameDialog: string = `What would you like to rename '${taskName}'?`;
-		var renameInput = prompt(renameDialog) ?? "";
+		var renameInput = prompt(renameDialog, taskName) ?? "";
 		setTodos((prev) =>
 			renameTodo({ source: prev, index: ind, taskName: renameInput })
 		);
