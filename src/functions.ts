@@ -62,7 +62,7 @@ export function markTodo(source: Arr, index: number, check: boolean): Arr {
 
 /**
  * Renames a todo item in the provided source array at the specified index.
- * If the provided task name is null, the todo item will be renamed to "[Unnamed task]".
+ * If the provided task name is null, the todo item will be renamed to "[Unnamed]".
  *
  * @param {Array<any>} source - The array of todo items.
  * @param {number} index - The index of the todo item to rename.
@@ -72,14 +72,14 @@ export function markTodo(source: Arr, index: number, check: boolean): Arr {
  */
 export function renameTodo(fn: RenameFn): Arr {
 	var arr: Arr = [...fn.source];
-	arr[fn.index].name = !!fn.taskName ? fn.taskName : "[Unnamed task]";
+	arr[fn.index].name = !!fn.taskName ? fn.taskName : "[Unnamed]";
 
 	return arr;
 }
 
 /**
  * Renames a task in the provided array at the specified index.
- * If the task name is null, it assigns the string "[Unnamed task]".
+ * If the task name is null, it assigns the string "[Unnamed]".
  *
  * @param {Array<string>} source - The array of task names.
  * @param {number} index - The index of the task to rename.
@@ -88,7 +88,7 @@ export function renameTodo(fn: RenameFn): Arr {
  */
 export function renameLog(fn: RenameFn): Arr {
 	var arr: Arr = [...fn.source];
-	arr[fn.index] = !!fn.taskName ? fn.taskName : "[Unnamed task]";
+	arr[fn.index] = !!fn.taskName ? fn.taskName : "[Unnamed]";
 
 	return arr;
 }
