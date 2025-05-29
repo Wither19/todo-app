@@ -1,20 +1,17 @@
-type Arr = any[];
-type Strs = string[];
-
-type RenameFn = {
-	source: Arr | Strs;
-	index: number;
-	taskName: string | null;
-};
-
 /**
  * Converts all strings in the given array to lowercase.
  *
  * @param arr - An array of strings to be converted to lowercase.
  * @returns An array of strings where each string is in lowercase.
  */
-export function allToLowerCase(arr: Strs): Strs {
-	var lowerArray = arr!.map((item: string) => item.toLowerCase());
+export function allToLowerCase(arr: string[]) {
+	var lowerArray = arr!.map((item) => {
+		if (typeof item === "string") {
+			return item.toLowerCase();
+		} else {
+			return item;
+		}
+	});
 	return lowerArray;
 }
 
@@ -44,18 +41,16 @@ export function stateIndexRemove(source: Arr, endIndex: number): Arr {
  * @returns {Array<any>} - A new array with the updated todo item.
  */
 export function markTodo(source: Arr, index: number, check: boolean): Arr {
-	var arr: Arr = source.map(
-		(item: { done: boolean; name: string }, ind: number) => {
-			if (ind == index) {
-				return {
-					done: check != item.done ? check : item.done,
-					name: item.name,
-				};
-			} else {
-				return item;
-			}
+	var arr: Arr = source.map((item: { done: boolean; name: string }, ind: number) => {
+		if (ind == index) {
+			return {
+				done: check != item.done ? check : item.done,
+				name: item.name,
+			};
+		} else {
+			return item;
 		}
-	);
+	});
 
 	return arr;
 }
