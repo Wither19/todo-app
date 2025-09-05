@@ -1,3 +1,11 @@
+// Type definitions
+type Arr = any[];
+interface RenameFn {
+        source: any[];
+        index: number;
+        taskName: string | null;
+}
+
 /**
  * Converts all strings in the given array to lowercase.
  *
@@ -5,7 +13,7 @@
  * @returns An array of strings where each string is in lowercase.
  */
 export function allToLowerCase(arr: string[]) {
-	return arr!.map((item) => item.toLowerCase());
+        return arr!.map((item) => item.toLowerCase());
 }
 
 /**
@@ -16,13 +24,13 @@ export function allToLowerCase(arr: string[]) {
  * @returns A new array with the element removed.
  */
 export function stateIndexRemove(source: Arr, endIndex: number): Arr {
-	var arr: Arr = [];
-	if (endIndex == source.length - 1) {
-		arr = source.slice(0, endIndex);
-	} else {
-		arr = [...source.slice(0, endIndex), ...source.slice(endIndex + 1)];
-	}
-	return arr;
+        var arr: Arr = [];
+        if (endIndex == source.length - 1) {
+                arr = source.slice(0, endIndex);
+        } else {
+                arr = [...source.slice(0, endIndex), ...source.slice(endIndex + 1)];
+        }
+        return arr;
 }
 
 /**
@@ -34,18 +42,18 @@ export function stateIndexRemove(source: Arr, endIndex: number): Arr {
  * @returns {Array<any>} - A new array with the updated todo item.
  */
 export function markTodo(source: Arr, index: number, check: boolean): Arr {
-	var arr: Arr = source.map((item: { done: boolean; name: string }, ind: number) => {
-		if (ind == index) {
-			return {
-				done: check != item.done ? check : item.done,
-				name: item.name,
-			};
-		} else {
-			return item;
-		}
-	});
+        var arr: Arr = source.map((item: { done: boolean; name: string }, ind: number) => {
+                if (ind == index) {
+                        return {
+                                done: check != item.done ? check : item.done,
+                                name: item.name,
+                        };
+                } else {
+                        return item;
+                }
+        });
 
-	return arr;
+        return arr;
 }
 
 /**
@@ -59,10 +67,10 @@ export function markTodo(source: Arr, index: number, check: boolean): Arr {
  *
  */
 export function renameTodo(fn: RenameFn): Arr {
-	var arr: Arr = [...fn.source];
-	arr[fn.index].name = !!fn.taskName ? fn.taskName : "[Unnamed]";
+        var arr: Arr = [...fn.source];
+        arr[fn.index].name = !!fn.taskName ? fn.taskName : "[Unnamed]";
 
-	return arr;
+        return arr;
 }
 
 /**
@@ -75,8 +83,8 @@ export function renameTodo(fn: RenameFn): Arr {
  * @returns {Array<any>} A new array with the updated task name.
  */
 export function renameLog(fn: RenameFn): Arr {
-	var arr: Arr = [...fn.source];
-	arr[fn.index] = !!fn.taskName ? fn.taskName : "[Unnamed]";
+        var arr: Arr = [...fn.source];
+        arr[fn.index] = !!fn.taskName ? fn.taskName : "[Unnamed]";
 
-	return arr;
+        return arr;
 }
