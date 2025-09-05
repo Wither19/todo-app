@@ -5,14 +5,7 @@
  * @returns An array of strings where each string is in lowercase.
  */
 export function allToLowerCase(arr: string[]) {
-	var lowerArray = arr!.map((item) => {
-		if (typeof item === "string") {
-			return item.toLowerCase();
-		} else {
-			return item;
-		}
-	});
-	return lowerArray;
+	return arr!.map((item) => item.toLowerCase());
 }
 
 /**
