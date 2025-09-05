@@ -74,10 +74,10 @@ function TodoInternal() {
 		const renameDialog: string = `What would you like to rename '${taskName}'?`;
 		var renameInput = prompt(renameDialog, taskName) ?? "";
 		setTodos((prev) =>
-			renameTodo({ source: prev, index: ind, taskName: renameInput })
+			renameTodo({ source: prev, index: ind, taskName: renameInput }),
 		);
 		setLog((prev) =>
-			renameLog({ source: prev, index: ind, taskName: renameInput })
+			renameLog({ source: prev, index: ind, taskName: renameInput }),
 		);
 	}
 
@@ -95,16 +95,12 @@ function TodoInternal() {
 
 	function handleMassDelete() {}
 
-	function handleSelect(
-		deletions: Array<string>,
-		ind: number,
-		domNode: string
-	) {
+	function handleSelect(deletions: string[], ind: number, domNode: string) {
 		$(domNode)!.toggleClass("active");
 		if (deletions.includes(todos[ind].name)) {
 			setDeletions((prev) => prev.filter(_, (index: number) => index != ind));
 		} else {
-			let arr: Array<string> = deletions;
+			let arr: string[] = deletions;
 			deletions.push(todos[ind].name);
 			setDeletions(arr);
 		}
@@ -140,7 +136,8 @@ function TodoInternal() {
 										}}
 										selectFunction={(e: any) => {
 											handleSelect(deletionQueue, index, e.target);
-										}}>
+										}}
+									>
 										{todo.name}
 									</TodoListItem>
 								</>

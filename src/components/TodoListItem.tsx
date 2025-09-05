@@ -5,7 +5,8 @@ function TodoListItem(props: any) {
 		<li
 			key={props.children}
 			className="list-group-item d-flex justify-content-between align-items-center cursor"
-			onDoubleClick={props.selectFunction}>
+			onDoubleClick={props.selectFunction}
+		>
 			<input
 				className="form-check-input my-1"
 				type="checkbox"
@@ -18,14 +19,16 @@ function TodoListItem(props: any) {
 			<div>
 				<span
 					className="badge bg-info rounded-pill cursor mx-2"
-					onClick={props.renameFunction}>
+					onClick={props.renameFunction}
+				>
 					<FaEdit size="20" />
 				</span>
 				<span
 					className={`badge bg-${
 						props.completed ? "danger" : "secondary"
 					} rounded-pill cursor mx-2`}
-					onClick={props.deleteFunction}>
+					onClick={props.deleteFunction}
+				>
 					<FaTrash size="20" />
 				</span>
 			</div>

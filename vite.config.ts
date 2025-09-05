@@ -11,5 +11,8 @@ export default defineConfig({
                 hmr: {
                         clientPort: 5000,
                 },
+                allowedHosts: [
+                        "8753cb0f-b58d-4311-ab1c-62f85ee31a8c-00-1ecbwwtukikun.spock.replit.dev",
+                ],
         },
 });
