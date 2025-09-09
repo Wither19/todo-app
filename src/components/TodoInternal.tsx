@@ -13,7 +13,7 @@ import {
 import TodoListItem from "./TodoListItem";
 import _ from "lodash";
 
-type Todo = { name: string; done: boolean };
+import type { Todo } from "../types.ts";
 
 function TodoInternal() {
 	// State bound to todo addition input
@@ -30,21 +30,18 @@ function TodoInternal() {
 		},
 	]);
 	// A record of all todos in a simple array, used to detect duplicates.
-	const [loggedTodos, setLog] = useState<string[]>([
-		"Sample task",
-		"Sample task 2",
-	]);
+	const [loggedTodos, setLog] = useState(["Sample task", "Sample task 2"]);
 
 	const [deletionQueue, setDeletions] = useState<string[]>([]);
 
 	// Updates the value of the draft state to the input value.
-	function updateDraft(): void {
+	function updateDraft() {
 		const draft = document.getElementById("todo-draft") as HTMLInputElement;
 		setDraftText(draft.value);
 	}
 
 	// Submits what is in the draft to a new entry in the todo array, and the todo log. Updates the UI, of course.
-	function submitTodo(event: any) {
+	function submitTodo(event: InputEvent) {
 		if (event.which == 13) {
 			if (allToLowerCase(loggedTodos).includes(draftText.toLowerCase())) {
 				alert("The Todo list already contains this item!");
@@ -108,14 +105,27 @@ function TodoInternal() {
 
 	return (
 		<>
-			<input
-				type="text"
-				className="input-lg my-5"
-				id="todo-draft"
-				value={draftText}
-				onChange={updateDraft}
-				onKeyDown={submitTodo}
-			/>
+			<div className="row">
+				<div className="col-6">
+					<input
+						type="text"
+						className="input-lg my-5"
+						id="todo-draft"
+						value={draftText}
+						onChange={updateDraft}
+						onKeyDown={submitTodo}
+					/>
+				</div>
+				<div className="col-3">
+					<button
+						disabled={!draftText}
+						type="button"
+						className={`btn btn-${!draftText ? "secondary" : "primary"}`}
+					>
+						Add item
+					</button>
+				</div>
+			</div>
 			<div className="row">
 				<div className="col-4">
 					<ul className="list-group">

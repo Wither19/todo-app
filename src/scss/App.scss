@@ -1,4 +1,4 @@
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@use "../../node_modules/bootstrap/scss/bootstrap";
 
 $header-font: "Inter", sans-serif;
 $text-font: "Ubuntu Sans", sans-serif;
@@ -15,7 +15,14 @@ $headers: (
 	".display-3",
 	".display-4"
 );
-$text-elems: ("p", "a", "span", "sub", "sup", ".list-group-item");
+$text-elems: (
+	"p",
+	"a",
+	"span",
+	"sub",
+	"sup",
+	".list-group-item"
+);
 
 @each $header in $headers {
 	#{$header} {
@@ -44,6 +51,7 @@ $text-elems: ("p", "a", "span", "sub", "sup", ".list-group-item");
 		opacity: 0;
 		transition: background-color 150ms, opacity 200ms;
 	}
+
 	&:hover .badge,
 	.badge:hover {
 		opacity: 1;

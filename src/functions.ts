@@ -1,10 +1,4 @@
-// Type definitions
-type Arr = any[];
-interface RenameFn {
-        source: any[];
-        index: number;
-        taskName: string | null;
-}
+import type { Todo } from "./types.ts";
 
 /**
  * Converts all strings in the given array to lowercase.
@@ -23,12 +17,15 @@ export function allToLowerCase(arr: string[]) {
  * @param endIndex - The index of the element to be removed.
  * @returns A new array with the element removed.
  */
-export function stateIndexRemove(source: Arr, endIndex: number): Arr {
-        var arr: Arr = [];
+export function stateIndexRemove<T>(source: T[], endIndex: number): T[] {
+        var arr: T[] = [];
         if (endIndex == source.length - 1) {
                 arr = source.slice(0, endIndex);
         } else {
-                arr = [...source.slice(0, endIndex), ...source.slice(endIndex + 1)];
+                arr = [
+                        ...source.slice(0, endIndex),
+                        ...source.slice(endIndex + 1),
+                ];
         }
         return arr;
 }
@@ -41,8 +38,8 @@ export function stateIndexRemove(source: Arr, endIndex: number): Arr {
  * @param {number} index - The index of the todo item to be updated.
  * @returns {Array<any>} - A new array with the updated todo item.
  */
-export function markTodo(source: Arr, index: number, check: boolean): Arr {
-        var arr: Arr = source.map((item: { done: boolean; name: string }, ind: number) => {
+export function markTodo<T>(source: T[], index: number, check: boolean): T[] {
+        var arr: T[] = source.map((item: Todo, ind: number) => {
                 if (ind == index) {
                         return {
                                 done: check != item.done ? check : item.done,
